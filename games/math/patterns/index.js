@@ -2,7 +2,7 @@ const patternLength = 10;
 const numBlanks = 3;
 const main = document.getElementById('main');
 const pattern = makePattern(randomNumber(1, 10));
-main.innerHTML = pattern.join(", ");
+main.innerHTML = renderPattern(pattern, getBlankIndices());
 
 function makePattern(countBy) {
   const start = randomNumber(1, 50);
@@ -32,4 +32,20 @@ function getBlankIndices() {
     indices.add(randomNumber(0, patternLength));
   }
   return Array.from(indices); 
+}
+
+/**
+ * renders pattern HTML
+ * @param {number[]} pattern list of numbers
+ * @param {number[]} blankIndices blank positions
+ * @returns {string} rendered HTML
+ */
+function renderPattern(pattern, blankIndices) {
+  return pattern.map((p, i) => {
+    if (blankIndices.includes(i)) {
+      return `<input type="number" name="blank${i}" />`;
+    } else {
+      return `<span>${p}</span>`;
+    }
+  }).join(' ');
 }
