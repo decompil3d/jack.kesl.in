@@ -2,7 +2,8 @@ const patternLength = 10;
 const numBlanks = 3;
 const main = document.getElementById('main');
 const pattern = makePattern(randomNumber(1, 10));
-main.innerHTML = renderPattern(pattern, getBlankIndices());
+const blankIndices = getBlankIndices();
+main.innerHTML = renderPattern(pattern, blankIndices);
 
 function makePattern(countBy) {
   const start = randomNumber(1, 50);
@@ -43,9 +44,33 @@ function getBlankIndices() {
 function renderPattern(pattern, blankIndices) {
   return pattern.map((p, i) => {
     if (blankIndices.includes(i)) {
-      return `<input type="number" name="blank${i}" />`;
+      return `<input type="number" id="blank${i}" />`;
     } else {
       return `<span>${p}</span>`;
     }
   }).join(' ');
+}
+
+function checkWork() {
+  if (checkAnswers()) {
+    alert('you win');
+  } else {
+    alert('not quite');
+  }
+}
+
+/**
+ * check answers & highlight boxes
+ * @returns {boolean} true if all answers are correct, false otherwise
+ */
+function checkAnswers() {
+  return blankIndices.every(b => {
+    /** @type {HTMLInputElement} */
+    const box = document.getElementById(`blank${b}`);
+    const answer = box.value;
+    if (answer == pattern[b]) {
+      return true;
+    }
+    return false;
+  });
 }
