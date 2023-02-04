@@ -1,0 +1,10 @@
+#main > span, #main > input {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+#main > input {
+  width: 3.9rem;
+}

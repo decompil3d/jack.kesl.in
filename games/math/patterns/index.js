@@ -44,7 +44,7 @@ function getBlankIndices() {
 function renderPattern(pattern, blankIndices) {
   return pattern.map((p, i) => {
     if (blankIndices.includes(i)) {
-      return `<input type="number" id="blank${i}" />`;
+      return `<input type="number" id="blank${i}" min="1" max="139" />`;
     } else {
       return `<span>${p}</span>`;
     }
