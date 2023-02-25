@@ -1,9 +1,23 @@
 const patternLength = 10;
 const numBlanks = 3;
 const main = document.getElementById('main');
-const pattern = makePattern(randomNumber(1, 10));
-const blankIndices = getBlankIndices();
-main.innerHTML = renderPattern(pattern, blankIndices);
+const actions = document.getElementById('actions');
+const lose = document.getElementById('lose');
+const win = document.getElementById('win');
+/** @type {number[]} */
+let blankIndices;
+/** @type {number[]} */
+let pattern;
+
+function reset() {
+  pattern = makePattern(randomNumber(1, 10));
+  blankIndices = getBlankIndices();
+  main.innerHTML = renderPattern(pattern, blankIndices);
+  actions.style.display = 'block';
+  lose.style.display = 'none';
+  win.style.display = 'none';
+}
+reset();
 
 function makePattern(countBy) {
   const start = randomNumber(1, 50);
@@ -23,7 +37,7 @@ function makePattern(countBy) {
 function randomNumber(start, end) {
   const range = end - start;
   const rand = Math.random();
-  return Math.floor(rand * range);
+  return Math.ceil(rand * range);
 }
 
 function getBlankIndices() {
@@ -53,9 +67,10 @@ function renderPattern(pattern, blankIndices) {
 
 function checkWork() {
   if (checkAnswers()) {
-    alert('you win');
+    actions.style.display = 'none';
+    win.style.display = 'block';
   } else {
-    alert('not quite');
+    lose.style.display = 'inline';
   }
 }
 

@@ -7,8 +7,13 @@
 <body>
     <h1>Pattern game</h1>
     <div id="main"></div>
-    <div>
-        <button onclick="checkWork()">Check my work</button>
+    <div id="actions">
+        <button id="check" onclick="checkWork()">Check my work</button>
+        <span id="lose" style="display: none;">Not quite, try again</span>
+    </div>
+    <div id="win" style="display: none;">
+        <span>Correct!</span>
+        <button onclick="reset()">Next Pattern</button>
     </div>
     <script src="index.js"></script>
 </body>
