@@ -37,7 +37,7 @@ function makePattern(countBy) {
 function randomNumber(start, end) {
   const range = end - start;
   const rand = Math.random();
-  return Math.ceil(rand * range);
+  return Math.floor(rand * range)+start;
 }
 
 function getBlankIndices() {
@@ -79,13 +79,17 @@ function checkWork() {
  * @returns {boolean} true if all answers are correct, false otherwise
  */
 function checkAnswers() {
-  return blankIndices.every(b => {
+  return blankIndices.map(b => {
     /** @type {HTMLInputElement} */
     const box = document.getElementById(`blank${b}`);
     const answer = box.value;
     if (answer == pattern[b]) {
+      box.classList.add('correct');
+      box.classList.remove('incorrect');
       return true;
     }
+    box.classList.add('incorrect');
+    box.classList.remove('correct');
     return false;
-  });
+  }).every(v => v);
 }

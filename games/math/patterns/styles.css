@@ -8,3 +8,11 @@
 #main > input {
   width: 3.9rem;
 }
+
+.correct {
+  border: 2px solid green;
+}
+
+.incorrect {
+  border: 2px solid red;
+}
