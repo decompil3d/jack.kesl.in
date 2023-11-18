@@ -9,10 +9,35 @@
   width: 3.9rem;
 }
 
-.correct {
-  border: 2px solid green;
+table {
+  border-collapse: collapse;
+}
+td {
+  width: 50px;
+  height: 50px;
+  border: 3px solid lightblue;
+  text-align: center;
 }
 
-.incorrect {
-  border: 2px solid red;
+td button {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+td button:hover {
+  background-color: burlywood;
+}
+
+.correct {
+  background-color: lightgreen;
+}
+
+.selected {
+  background-color: aqua;
+}
+
+.wrong {
+  background-color: lightsalmon;
 }
